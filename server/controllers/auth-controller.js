@@ -17,17 +17,21 @@ const register = async (req, res) => {
 
         const userExist = await User.findOne({ email });
 
-        if(userExist){
-           return res.status(404).json({msg:"user already exists"});
+        if (userExist) {
+            return res.status(404).json({ msg: "user already exists" });
         }
 
-        const userCreated = await User.create({username, email, phone, password});
+        const userCreated = await User.create({ username, email, phone, password });
 
         console.log("user is successfully created");
-        res.status(200).json({msg : userCreated});
+        res.status(200).json({
+            msg: "user is successfully registered",
+            token: await userCreated.generateToken(),
+            userid: userCreated._id.toString()
+        });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({msg:"internal server error"});
+        return res.status(500).json({ msg: "internal server error" });
     }
 }
 
