@@ -2,11 +2,33 @@ import { NavLink } from "react-router-dom"
 
 export const Navbar = () => {
     return <>
-        <NavLink to={'/'}>Home</NavLink>
-        <NavLink to={'/about'}>About</NavLink>
-        <NavLink to={'/contact'}>Contact</NavLink>
-        <NavLink to={'/service'}>Service</NavLink>
-        <NavLink to={'/register'}>Register</NavLink>
-        <NavLink to={'/login'}>Login</NavLink>
+
+        <div className="main_container bg-slate-700 flex justify-around p-2 text-white border border-red-600">
+            <div className="logo">
+                <h1>Protyay Ray</h1>
+            </div>
+            <div className="nav_links">
+                <ul className="flex gap-5">
+                    <li className="">
+                    <NavLink to={'/'}>Home</NavLink>
+                    </li>
+                    <li className="">
+                    <NavLink to={'/about'}>About</NavLink>
+                    </li>
+                    <li className="">
+                    <NavLink to={'/contact'}>Contact</NavLink>
+                    </li>
+                    <li className="">
+                    <NavLink to={'/service'}>Service</NavLink>
+                    </li>
+                    <li className="">
+                    <NavLink to={'/register'}>Register</NavLink>
+                    </li>
+                    <li className="">
+                    <NavLink to={'/login'}>Login</NavLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </>
 }
