@@ -1,24 +1,51 @@
 import { useState } from "react";
-
-export const Login = () =>{
+import { useNavigate } from "react-router-dom";
+export const Login = () => {
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
-    const handleUser = (e) =>{
+
+    const navigate = useNavigate();
+
+    const handleUser = (e) => {
         const name = e.target.name;
         const value = e.target.value;
 
         setUser({
             ...user,
-            [name]:value
+            [name]: value
         })
     }
 
-    const handleForm = (e)=>{
-        // e.preventDefault();
+    const handleForm = async (e) => {
+        e.preventDefault();
 
-        window.alert("login successful");
+        console.log(user);
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+
+            if (response.ok) {
+                setUser({
+                    email: "",
+                    password: ""
+                })
+
+                window.alert("Login successful..!!");
+                navigate("/home");
+            }else{
+                window.alert("invalid credential...");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return <>
@@ -31,16 +58,16 @@ export const Login = () =>{
                 <div className="right flex flex-col  m-1 top-4 w-1/2 h-auto">
                     <h2 className="font-bold mx-28 first-letter:text-2xl">Login Form</h2>
                     <form onSubmit={handleForm}>
-                       <div className="email m-3">
+                        <div className="email m-3">
                             <label htmlFor="email" class="block mb-2 text-sm font-medium">Your email</label>
-                            <input type="email" id="email" name="email" class="bg-gray-300 rounded-md w-4/5 p-1 focus:outline-blue-950" autoComplete="false" placeholder="name@flowbite.com" required 
+                            <input type="email" id="email" name="email" class="bg-gray-300 rounded-md w-4/5 p-1 focus:outline-blue-950" autoComplete="false" placeholder="name@flowbite.com" required
                                 value={user.email}
                                 onChange={handleUser}
                             />
                         </div>
                         <div className="password m-3">
                             <label htmlFor="password" class="block mb-2 text-sm font-medium">Your password</label>
-                            <input type="password" name="password" id="email" class="bg-gray-300 rounded-md w-4/5 p-1 focus:outline-blue-950" autoComplete="false" placeholder="•••••••••••" required 
+                            <input type="password" name="password" id="email" class="bg-gray-300 rounded-md w-4/5 p-1 focus:outline-blue-950" autoComplete="false" placeholder="•••••••••••" required
                                 value={user.password}
                                 onChange={handleUser}
                             />

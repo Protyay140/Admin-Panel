@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { useNavigate } from "react-router-dom"
 export const Register = () => {
 
     const [user, setUser] = useState({
@@ -9,6 +9,7 @@ export const Register = () => {
         password: ""
     })
 
+    const navigate = useNavigate();
     const handleUser = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -25,7 +26,7 @@ export const Register = () => {
         console.log(user);
 
         try {
-            const response = await fetch("​http://localhost:5000/api/auth/register", {
+            const response = await fetch(`http://localhost:5000/api/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -33,15 +34,19 @@ export const Register = () => {
                 body: JSON.stringify(user),
             });
 
-            setUser({
-                username: "",
-                email: "",
-                phone: "",
-                password: ""
-            })
+            if (response.ok) {
+                setUser({
+                    username: "",
+                    email: "",
+                    phone: "",
+                    password: ""
+                })
 
-            window.alert("registration successful..!!");
+                window.alert("registration successful..!!");
+                navigate("/login");
+            }
             console.log(response);
+            console.log(response.url);
         } catch (error) {
             console.log(error);
         }
