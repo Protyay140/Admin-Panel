@@ -1,5 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { toast } from 'react-toastify';
+
+
 export const Register = () => {
 
     const [user, setUser] = useState({
@@ -42,7 +45,10 @@ export const Register = () => {
                     password: ""
                 })
 
-                window.alert("registration successful..!!");
+                // window.alert("registration successful..!!");
+                toast.success("registration successful...",{
+                    position : "top-center"
+                });
                 navigate("/login");
             }
             console.log(response);

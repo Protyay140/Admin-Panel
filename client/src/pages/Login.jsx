@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 export const Login = () => {
     const [user, setUser] = useState({
         email: "",
@@ -38,8 +40,12 @@ export const Login = () => {
                     password: ""
                 })
 
-                window.alert("Login successful..!!");
-                navigate("/home");
+                // window.alert("Login successful..");
+                // toast("Login successful..");
+                toast.success("Login successful...", {
+                    position: "top-center"
+                  });
+                navigate("/");
             }else{
                 window.alert("invalid credential...");
             }
