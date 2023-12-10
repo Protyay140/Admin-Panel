@@ -50,6 +50,9 @@ export const Register = () => {
                     position : "top-center"
                 });
                 navigate("/login");
+
+                const data = await response.json();
+                console.log("response from server : "+data);
             }
             console.log(response);
             console.log(response.url);

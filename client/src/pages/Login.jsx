@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useAuth } from "../store/auth";
 
 export const Login = () => {
     const [user, setUser] = useState({
@@ -9,6 +10,7 @@ export const Login = () => {
     })
 
     const navigate = useNavigate();
+    const storeToken = useAuth();
 
     const handleUser = (e) => {
         const name = e.target.name;
@@ -46,6 +48,9 @@ export const Login = () => {
                     position: "top-center"
                   });
                 navigate("/");
+                const data = await response.json();
+                // console.log("response from server : ",data);
+                storeToken(data.token);
             }else{
                 window.alert("invalid credential...");
             }
