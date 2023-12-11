@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom"
+import { useAuth } from "../store/auth"
 
 export const Navbar = () => {
-    return <>
 
+    const { isLoggedIn } = useAuth();
+
+    return <>
         <div className="outer p-2">
             <div className="main_container bg-slate-700 flex justify-around p-2 text-white">
                 <div className="logo">
@@ -22,12 +25,27 @@ export const Navbar = () => {
                         <li className="">
                             <NavLink to={'/service'}>Service</NavLink>
                         </li>
-                        <li className="">
+                        
+                        {isLoggedIn ? (<li className="">
+                            <NavLink to={'/logout'}>Logout</NavLink>
+                        </li>) :
+                            <>
+                                <li className="">
+                                    <NavLink to={'/register'}>Register</NavLink>
+                                </li>
+                                <li className="">
+                                    <NavLink to={'/login'}>Login</NavLink>
+                                </li>
+                            </>}
+                        {/* <li className="">
                             <NavLink to={'/register'}>Register</NavLink>
                         </li>
                         <li className="">
                             <NavLink to={'/login'}>Login</NavLink>
                         </li>
+                        <li className="">
+                            <NavLink to={'/logout'}>Logout</NavLink>
+                        </li> */}
                     </ul>
                 </div>
             </div>
