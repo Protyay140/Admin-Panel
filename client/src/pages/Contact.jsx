@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useAuth } from "../store/auth";
@@ -9,6 +9,20 @@ export const Contact = () => {
         email: "",
         message: "",
     })
+
+    const { isLoggedIn } = useAuth();
+    const navigate = useNavigate();
+
+    // useEffect(() => {
+        // if (!isLoggedIn) {
+        //     toast.error("please login first .....", {
+        //         position: "top-center",
+        //     });
+
+        //     navigate('/login');
+        //     // alert("now in contact page");
+        // }
+    // },[]);
 
     const handleContact = (e) => {
         const name = e.target.name;
@@ -38,7 +52,7 @@ export const Contact = () => {
         <div className="grid grid-cols-12 mt-4">
             <div className="col-span-8 col-start-3 flex shadow-lg">
                 <div className="left p-4 w-1/2 m-1 mt-9">
-                    <img className="w-4/5" src="contact.svg" alt="error in loading " srcset="" />
+                    <img className="w-4/5" src="contact.svg" alt="error in loading " />
                 </div>
 
                 <div className="right flex flex-col  m-1 top-4 w-1/2 h-auto">
@@ -75,7 +89,7 @@ export const Contact = () => {
         </div>
 
         <div className="map p-2">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3686.2131415579274!2d88.36993697357629!3d22.49618493576996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02713cd2dee061%3A0xf0d0e4f08690838c!2sJadavpur%20University%20Gate%20No.1%2C%201%2C%20Jadavpur%20Station%20Rd%2C%20K%20P%20C%20Medical%20College%20and%20Hospital%20Campus%2C%20Jadavpur%2C%20Kolkata%2C%20West%20Bengal%20700032!5e0!3m2!1sen!2sin!4v1702382300932!5m2!1sen!2sin" width="1250" height="450" allowFullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3686.2131415579274!2d88.36993697357629!3d22.49618493576996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02713cd2dee061%3A0xf0d0e4f08690838c!2sJadavpur%20University%20Gate%20No.1%2C%201%2C%20Jadavpur%20Station%20Rd%2C%20K%20P%20C%20Medical%20College%20and%20Hospital%20Campus%2C%20Jadavpur%2C%20Kolkata%2C%20West%20Bengal%20700032!5e0!3m2!1sen!2sin!4v1702382300932!5m2!1sen!2sin" width="1250" height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </>
 }
