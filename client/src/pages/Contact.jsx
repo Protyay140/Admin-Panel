@@ -13,17 +13,6 @@ export const Contact = () => {
     const { isLoggedIn } = useAuth();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-        // if (!isLoggedIn) {
-        //     toast.error("please login first .....", {
-        //         position: "top-center",
-        //     });
-
-        //     navigate('/login');
-        //     // alert("now in contact page");
-        // }
-    // },[]);
-
     const handleContact = (e) => {
         const name = e.target.name;
         const value = e.target.value;
