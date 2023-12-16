@@ -61,7 +61,7 @@ const login = async (req, res) => {
 const user = async (req, res) => {
     try {
         const userData = req.user;
-        return res.status(200).json({ user: userData });
+        return res.status(200).json({ userData });
     } catch (error) {
         console.log(error);
         return res.status(500).json({ msg: "use is not valid..." });

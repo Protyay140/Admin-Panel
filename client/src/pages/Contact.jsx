@@ -13,6 +13,21 @@ export const Contact = () => {
     const { isLoggedIn } = useAuth();
     const navigate = useNavigate();
 
+    const { user } = useAuth();
+
+    const [userData, setUserData] = useState(true);
+
+    if(userData && user){
+        setContact({
+            username:user.username,
+            email:user.email,
+            message:""
+        })
+
+        setUserData(false);
+    }
+
+
     const handleContact = (e) => {
         const name = e.target.name;
         const value = e.target.value;

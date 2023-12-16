@@ -1,10 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(localStorage.getItem('token'));
+    const [user, setUser] = useState("");
 
     const storeToken = (serverToken) => {
         return localStorage.setItem('token', serverToken);
@@ -12,13 +13,37 @@ export const AuthProvider = ({ children }) => {
 
     const isLoggedIn = !!token;
 
-    console.log("are you logged in ? --> ",isLoggedIn);
+    console.log("are you logged in ? --> ", isLoggedIn);
     const LogoutUser = () => {
         setToken("");
         return localStorage.removeItem('token');
     }
 
-    return <AuthContext.Provider value={{storeToken, isLoggedIn, LogoutUser}}>
+    const userAuthentication = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/auth/user`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            })
+            if (response.ok) {
+                const data = await response.json();
+                // console.log(data.userData);
+                setUser(data.userData);
+            }
+            console.log(user);
+        } catch (error) {
+            console.log("error : ",error);
+        }
+
+    }
+
+    useEffect(() => {
+        userAuthentication();
+    }, []);
+
+    return <AuthContext.Provider value={{ storeToken, isLoggedIn, LogoutUser, user }}>
         {children}
     </AuthContext.Provider>
 }
