@@ -42,8 +42,7 @@ export const Login = () => {
                     password: ""
                 })
 
-                // window.alert("Login successful..");
-                // toast("Login successful..");
+
                 toast.success("Login successful...", {
                     position: "top-center"
                 });

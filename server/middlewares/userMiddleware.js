@@ -6,7 +6,7 @@ const userMiddleware = async (req, res, next) => {
         return res.status(500).json("jwt token is not authorized...");
     }
     const jwtToken = jwtTokenData.replace("Bearer","").trim();
-    console.log("token : ",jwtToken);
+    // console.log("token : ",jwtToken);
 
     try {
         const isVarified = jwt.verify(jwtToken,process.env.JWT_SECRET_KEY);
@@ -14,7 +14,7 @@ const userMiddleware = async (req, res, next) => {
         const userData = await User.findOne({email: isVarified.email}).select({
             password:0
         });
-        console.log(userData);
+        // console.log(userData);
 
         req.user = userData;
         req.token = jwtTokenData;

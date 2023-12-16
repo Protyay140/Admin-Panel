@@ -48,7 +48,7 @@ export const Register = () => {
                 toast.success("registration successful...",{
                     position : "top-center"
                 });
-                navigate("/login");
+                navigate("/");
 
                 const data = await response.json();
                 console.log("response from server : "+data);
