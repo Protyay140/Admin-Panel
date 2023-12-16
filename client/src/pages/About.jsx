@@ -1,5 +1,9 @@
-export const About = () =>{
+import { useAuth } from "../store/auth"
+export const About = () => {
+
+    const { user } = useAuth();
+
     return <>
-        <h1>This is about page</h1>
+        <h1>Hi , {user ? `${user.username}` : "User" }</h1>
     </>
 }
