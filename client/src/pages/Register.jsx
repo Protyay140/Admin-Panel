@@ -94,7 +94,7 @@ export const Register = () => {
                         </div>
                         <div className="password m-3">
                             <label htmlFor="password" className="block mb-2 text-sm font-medium">Your password</label>
-                            <input type="password" name="password" id="email" className="bg-gray-300 rounded-md w-4/5 p-1 focus:outline-blue-950" autoComplete="false" placeholder="•••••••••••" required
+                            <input type="password" name="password" id="password" className="bg-gray-300 rounded-md w-4/5 p-1 focus:outline-blue-950" autoComplete="false" placeholder="•••••••••••" required
                                 value={user.password}
                                 onChange={handleUser}
                             />

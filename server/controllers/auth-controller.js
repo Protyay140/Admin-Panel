@@ -58,5 +58,14 @@ const login = async (req, res) => {
     }
 }
 
+const user = async (req, res) => {
+    try {
+        const userData = req.user;
+        return res.status(200).json({ user: userData });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ msg: "use is not valid..." });
+    }
+}
 
-module.exports = { home, register, login };
+module.exports = { home, register, login, user };
