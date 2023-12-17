@@ -41,15 +41,24 @@ export const Contact = () => {
     const handleForm = async (e) => {
         e.preventDefault();
 
-        console.log("contact : ", contact);
-        toast.success("message sent successfully....", {
-            position: "top-center"
+        const response = await fetch(`http://localhost:5000/api/form/contact`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(contact)
         });
-        setContact({
-            username: "",
-            email: "",
-            message: ""
-        })
+        
+        if(response.ok){
+            toast.success("message is successfully delivered...",{
+                position:"top-center",
+            });
+
+            setContact({
+                ...contact,
+                message:"",
+            })
+        }
     }
 
     return <>
@@ -83,7 +92,7 @@ export const Contact = () => {
                                 onChange={handleContact}
                             ></textarea>
                         </div>
-                        <button type="submit" className="bg-slate-700 text-white py-2 px-3 rounded-md mx-28 mb-3 hover:bg-slate-900">
+                        <button type="submit" className="bg-slate-700 text-white py-2 px-5 rounded-md mx-28 mb-3 hover:bg-slate-900">
                             Send
                         </button>
                     </form>
