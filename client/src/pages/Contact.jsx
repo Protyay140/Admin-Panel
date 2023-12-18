@@ -53,7 +53,6 @@ export const Contact = () => {
             toast.success("message is successfully delivered...",{
                 position:"top-center",
             });
-
             setContact({
                 ...contact,
                 message:"",
