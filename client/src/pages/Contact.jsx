@@ -57,6 +57,8 @@ export const Contact = () => {
                 ...contact,
                 message:"",
             })
+        }else{
+            console.log("error in handling contact form......");
         }
     }
 
