@@ -36,6 +36,8 @@ export const Login = () => {
                 body: JSON.stringify(user),
             });
 
+            const data = await response.json();
+            
             if (response.ok) {
                 setUser({
                     email: "",
@@ -48,11 +50,11 @@ export const Login = () => {
                 });
 
                 navigate("/");
-                const data = await response.json();
+                
                 // console.log("response from server : ",data);
                 storeToken(data.token);
             } else {
-                window.alert("invalid credential...");
+                alert(data.extraDetails ? data.extraDetails : data.message);
             }
         } catch (error) {
             console.log(error);

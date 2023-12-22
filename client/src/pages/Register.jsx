@@ -36,6 +36,8 @@ export const Register = () => {
                 body: JSON.stringify(user),
             });
 
+            const data = await response.json();
+
             if (response.ok) {
                 setUser({
                     username: "",
@@ -50,11 +52,12 @@ export const Register = () => {
                 });
                 navigate("/");
 
-                const data = await response.json();
-                console.log("response from server : "+data);
+                // const data = await response.json();
+                // console.log("response from server : "+data);
+            }else{
+                alert(data.extraDetails ? data.extraDetails : data.message);
             }
-            console.log(response);
-            console.log(response.url);
+           
         } catch (error) {
             console.log(error);
         }
