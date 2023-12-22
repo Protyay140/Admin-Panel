@@ -55,7 +55,10 @@ export const Register = () => {
                 // const data = await response.json();
                 // console.log("response from server : "+data);
             }else{
-                alert(data.extraDetails ? data.extraDetails : data.message);
+                const errorMessage = data.extraDetails ? data.extraDetails : data.message;
+                toast.error(errorMessage,{
+                    position:"top-center",
+                })
             }
            
         } catch (error) {

@@ -54,7 +54,10 @@ export const Login = () => {
                 // console.log("response from server : ",data);
                 storeToken(data.token);
             } else {
-                alert(data.extraDetails ? data.extraDetails : data.message);
+                const errorMessage = data.extraDetails ? data.extraDetails : data.message;
+                toast.error(errorMessage,{
+                    position:"top-center",
+                });
             }
         } catch (error) {
             console.log(error);
