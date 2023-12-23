@@ -52,8 +52,7 @@ export const Register = () => {
                 });
                 navigate("/");
 
-                // const data = await response.json();
-                // console.log("response from server : "+data);
+    
             }else{
                 const errorMessage = data.extraDetails ? data.extraDetails : data.message;
                 toast.error(errorMessage,{
