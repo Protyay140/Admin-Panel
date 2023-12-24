@@ -59,6 +59,9 @@ export const Contact = () => {
             })
         }else{
             console.log("error in handling contact form......");
+            toast.error("message is not delivered...",{
+                position:"top-center",
+            });
         }
     }
 
