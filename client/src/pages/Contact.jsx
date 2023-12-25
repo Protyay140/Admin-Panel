@@ -17,11 +17,11 @@ export const Contact = () => {
 
     const [userData, setUserData] = useState(true);
 
-    if(userData && user){
+    if (userData && user) {
         setContact({
-            username:user.username,
-            email:user.email,
-            message:""
+            username: user.username,
+            email: user.email,
+            message: ""
         })
 
         setUserData(false);
@@ -41,26 +41,32 @@ export const Contact = () => {
     const handleForm = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:5000/api/form/contact`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
+        const response = await fetch(`http://localhost:5000/api/form/contact`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify(contact)
+            body: JSON.stringify(contact)
         });
-        
-        if(response.ok){
-            toast.success("message is successfully delivered...",{
-                position:"top-center",
+
+        const data = await response.json();
+
+        if (response.ok) {
+            toast.success("message is successfully delivered...", {
+                position: "top-center",
             });
             setContact({
                 ...contact,
-                message:"",
+                message: "",
             })
-        }else{
-            console.log("error in handling contact form......");
-            toast.error("message is not delivered...",{
-                position:"top-center",
+        } else {
+            // console.log("error in handling contact form......");
+            // toast.error("message is not delivered...",{
+            //     position:"top-center",
+            // });
+            const errorMessage = data.extraDetails ? data.extraDetails : data.message;
+            toast.error(errorMessage, {
+                position: "top-center",
             });
         }
     }
