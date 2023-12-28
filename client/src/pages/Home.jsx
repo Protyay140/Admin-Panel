@@ -1,5 +1,10 @@
 export const Home = () => {
     return <>
-        <h1>this is home page</h1>
+        <div className="grid grid-cols-12">
+            <div className="col-span-8 col-start-3">
+                
+            </div>
+        </div>
+
     </>
 }
