@@ -4,6 +4,10 @@ export const About = () => {
     const { user } = useAuth();
 
     return <>
-        <h1>Hi , {user ? `${user.username}` : "User" }</h1>
+        <div className="grid grid-cols-12">
+            <div className="col-span-8 col-start-3">
+                <div className="username text-center">Hey <span className="font-bold text-green-600">{user.username}🤙🏻</span></div>
+            </div>
+        </div>
     </>
 }

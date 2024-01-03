@@ -8,8 +8,10 @@ export const Navbar = () => {
     return <>
         <div className="outer p-2">
             <div className="main_container bg-slate-700 flex justify-around p-2 text-white">
-                <div className="logo">
-                    <h1>Protyay Ray</h1>
+                <div className="logo w-12 ">
+                    <div className="w-fit">
+                        <img className="rounded-md" src="https://thumbs.dreamstime.com/b/initial-letter-p-logo-design-vector-king-crown-icon-luxury-monogram-290626679.jpg" alt="" />
+                    </div>
                 </div>
                 <div className="nav_links">
                     <ul className="flex gap-5">
