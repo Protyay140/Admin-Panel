@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { useAuth } from "../store/auth"
 
 export const Home = () => {
     const { user } = useAuth();
+    useEffect(()=>{
+        console.log("user : (home page) ",user);
+    })
     return <>
         <div className="grid grid-cols-12">
             <div className="col-span-8 col-start-3">

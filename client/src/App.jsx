@@ -10,6 +10,8 @@ import { Navbar } from './components/navbar'
 import { Logout } from './pages/Logout'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Success from './pages/Success'
+import Cancel from './pages/Cancel'
 
 const App = () => {
   return <>
@@ -24,6 +26,8 @@ const App = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />
+        <Route path='/success' element={<Success />} />
+        <Route path='/cancel' element={<Cancel />} />
       </Routes>
     </BrowserRouter>
   </>
